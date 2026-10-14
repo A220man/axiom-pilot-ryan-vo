@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "name": "axiom-pilot-ryan-vo",
+  "owner": "A220man",
+  "email": "ryandtvo@gmail.com",
+  "domain": "AI/ML developer tools",
+  "summary": "Work in progress: axiom-pilot-ryan-vo",
+  "workflows": [
+    "Validate plugin.json, SKILL.md, agents/, skills/, hooks/, mcp.json against schemas and detect missing paths",
+    "Analyze PR review diff renderers for import-filtering-before-numbering and whitespace-collapsing bugs",
+    "Audit declared OAuth scopes vs required API scopes for MCP connectors (e.g., Gmail gmail.settings.basic)"
+  ],
+  "auth": "oidc-keycloak-saml-broker",
+  "llm_providers": [
+    "openai-compatible",
+    "anthropic",
+    "gemini",
+    "ollama"
+  ],
+  "status": "work-in-progress"
+}
