@@ -1,1 +1,113 @@
-{"schema_version":1,"current_feature":"core-skeleton","features":[{"id":"core-skeleton","title":"FastAPI/React skeleton with auth, DB, and Docker","status":"in_progress","acceptance":["Backend FastAPI app starts with SQLite DB","Frontend React+TS+Vite builds and serves","OIDC Keycloak auth flow configured (backend sessions + HttpOnly cookies)","Docker compose runs backend, frontend, Keycloak, DB","Preflight passes (all required files present)"],"implementation":["backend/app/main.py","backend/app/core/config.py","backend/app/core/security.py","backend/app/core/database.py","backend/app/models/__init__.py","backend/app/api/routes/health.py","backend/app/api/routes/auth.py","backend/requirements.txt","backend/Dockerfile","frontend/package.json","frontend/src/main.tsx","frontend/src/App.tsx","frontend/src/api/client.ts","frontend/Dockerfile","compose.yaml",".env.example",".gitignore","portfolio.json","README.md","LICENSE","CHANGELOG.md","pyproject.toml",".github/workflows/ci.yml"],"tests":["backend/tests/test_health.py","backend/tests/test_auth.py","backend/tests/test_database.py","frontend/src/__tests__/App.test.tsx"]},{"id":"plugin-validator","title":"Cursor plugin manifest and component validator","status":"planned","acceptance":["Validates plugin.json against schema","Checks SKILL.md frontmatter parsing","Verifies agents/, skills/, hooks/, mcp.json paths exist","Validates mcp.json placeholders against variables","Detects unlisted plugin directories"],"implementation":[],"tests":[]},{"id":"diff-quality-analyzer","title":"Diff rendering quality analyzer (issue #472)","status":"planned","acceptance":["Parses raw diff and computes line numbers from hunk headers","Detects import lines filtered before numbering","Detects whitespace-only collapsing hiding meaningful changes","Reports issues with line references"],"implementation":[],"tests":[]},{"id":"symlink-detector","title":"Local plugin symlink detection (issue #35)","status":"planned","acceptance":["Scans ~/.cursor/plugins/local for symlinks","Reports symlinked plugins that won't load","Suggests copy-based workflow"],"implementation":[],"tests":[]},{"id":"oauth-scope-auditor","title":"OAuth scope auditor for connectors (issue #385)","status":"planned","acceptance":["Checks declared scopes against required API scopes","Identifies missing scopes (e.g., gmail.settings.basic)","Generates remediation report"],"implementation":[],"tests":[]},{"id":"llm-explanations","title":"Opt-in LLM explanations for validation findings","status":"planned","acceptance":["LLM adapter supports OpenAI-compatible, Anthropic, Gemini, Ollama","Explanations labeled advisory, grounded in actual records","Clear provider errors, no fabricated responses","Works without LLM key (deterministic core)"],"implementation":[],"tests":[]}]}
+{
+  "schema_version": 1,
+  "current_feature": "plugin-validator",
+  "features": [
+    {
+      "id": "core-skeleton",
+      "title": "FastAPI/React skeleton with auth, DB, and Docker",
+      "status": "done",
+      "acceptance": [
+        "Backend FastAPI app starts with SQLite DB",
+        "Frontend React+TS+Vite builds and serves",
+        "OIDC Keycloak auth flow configured (backend sessions + HttpOnly cookies)",
+        "Docker compose runs backend, frontend, Keycloak, DB",
+        "Preflight passes (all required files present)"
+      ],
+      "implementation": [
+        "backend/app/main.py",
+        "backend/app/core/config.py",
+        "backend/app/core/security.py",
+        "backend/app/core/database.py",
+        "backend/app/models/__init__.py",
+        "backend/app/api/routes/health.py",
+        "backend/app/api/routes/auth.py",
+        "backend/requirements.txt",
+        "backend/Dockerfile",
+        "frontend/package.json",
+        "frontend/src/main.tsx",
+        "frontend/src/App.tsx",
+        "frontend/src/api/client.ts",
+        "frontend/Dockerfile",
+        "compose.yaml",
+        ".env.example",
+        ".gitignore",
+        "portfolio.json",
+        "README.md",
+        "LICENSE",
+        "CHANGELOG.md",
+        "pyproject.toml",
+        ".github/workflows/ci.yml"
+      ],
+      "tests": [
+        "backend/tests/test_health.py",
+        "backend/tests/test_auth.py",
+        "backend/tests/test_database.py",
+        "frontend/src/__tests__/App.test.tsx"
+      ]
+    },
+    {
+      "id": "plugin-validator",
+      "title": "Cursor plugin manifest and component validator",
+      "status": "in_progress",
+      "acceptance": [
+        "Validates plugin.json against schema",
+        "Checks SKILL.md frontmatter parsing",
+        "Verifies agents/, skills/, hooks/, mcp.json paths exist",
+        "Validates mcp.json placeholders against variables",
+        "Detects unlisted plugin directories"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "diff-quality-analyzer",
+      "title": "Diff rendering quality analyzer (issue #472)",
+      "status": "planned",
+      "acceptance": [
+        "Parses raw diff and computes line numbers from hunk headers",
+        "Detects import lines filtered before numbering",
+        "Detects whitespace-only collapsing hiding meaningful changes",
+        "Reports issues with line references"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "symlink-detector",
+      "title": "Local plugin symlink detection (issue #35)",
+      "status": "planned",
+      "acceptance": [
+        "Scans ~/.cursor/plugins/local for symlinks",
+        "Reports symlinked plugins that won't load",
+        "Suggests copy-based workflow"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "oauth-scope-auditor",
+      "title": "OAuth scope auditor for connectors (issue #385)",
+      "status": "planned",
+      "acceptance": [
+        "Checks declared scopes against required API scopes",
+        "Identifies missing scopes (e.g., gmail.settings.basic)",
+        "Generates remediation report"
+      ],
+      "implementation": [],
+      "tests": []
+    },
+    {
+      "id": "llm-explanations",
+      "title": "Opt-in LLM explanations for validation findings",
+      "status": "planned",
+      "acceptance": [
+        "LLM adapter supports OpenAI-compatible, Anthropic, Gemini, Ollama",
+        "Explanations labeled advisory, grounded in actual records",
+        "Clear provider errors, no fabricated responses",
+        "Works without LLM key (deterministic core)"
+      ],
+      "implementation": [],
+      "tests": []
+    }
+  ]
+}
