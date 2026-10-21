@@ -4,13 +4,13 @@ Each round completes one feature or repair. Future items are planned, not implem
 
 ## Current round
 
-core-skeleton
+plugin-validator
 
 ## Roadmap
 
 ### core-skeleton — FastAPI/React skeleton with auth, DB, and Docker
 
-Status: in_progress
+Status: done
 
 Acceptance:
 - Backend FastAPI app starts with SQLite DB
@@ -25,7 +25,7 @@ Tests: `backend/tests/test_health.py`, `backend/tests/test_auth.py`, `backend/te
 
 ### plugin-validator — Cursor plugin manifest and component validator
 
-Status: planned
+Status: in_progress
 
 Acceptance:
 - Validates plugin.json against schema
