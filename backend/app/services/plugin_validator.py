@@ -3,11 +3,15 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-
+try:
+    import yaml
+except ImportError:
+    yaml = None
 @dataclass
 class ValidationResult:
     """Result of a plugin validation check."""
@@ -33,6 +37,72 @@ class PluginManifest:
     mcp_servers: list[str] = field(default_factory=list)
     variables: dict[str, str] = field(default_factory=dict)
     raw: dict[str, Any] = field(default_factory=dict)
+@dataclass
+class SkillManifest:
+    """Parsed SKILL.md frontmatter."""
+
+    name: str
+    description: str
+    version: str = "0.0.0"
+    author: str = ""
+    tags: list[str] = field(default_factory=list)
+    requires: list[str] = field(default_factory=list)
+    raw: dict[str, Any] = field(default_factory=dict)
+
+
+def parse_skill_markdown(skill_path: Path) -> SkillManifest | None:
+    """Parse SKILL.md file with YAML frontmatter."""
+    skill_file = skill_path / "SKILL.md"
+    if not skill_file.exists():
+        return None
+
+    if yaml is None:
+        return None
+
+    try:
+        with open(skill_file, encoding="utf-8") as f:
+            content = f.read()
+    except OSError:
+        return None
+
+    # Extract frontmatter between --- delimiters
+    frontmatter_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL)
+    if not frontmatter_match:
+        return None
+
+    try:
+        frontmatter = yaml.safe_load(frontmatter_match.group(1))
+        if not isinstance(frontmatter, dict):
+            return None
+    except yaml.YAMLError:
+        return None
+
+    return SkillManifest(
+        name=frontmatter.get("name", ""),
+        description=frontmatter.get("description", ""),
+        version=frontmatter.get("version", "0.0.0"),
+        author=frontmatter.get("author", ""),
+        tags=frontmatter.get("tags", []),
+        requires=frontmatter.get("requires", []),
+        raw=frontmatter,
+    )
+
+
+def validate_skill_frontmatter(skill: SkillManifest) -> ValidationResult:
+    """Validate SKILL.md frontmatter against required schema."""
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    if not skill.name:
+        errors.append("Skill name cannot be empty")
+
+    if not skill.description:
+        warnings.append("Skill description is empty")
+
+    if not skill.author:
+        warnings.append("Skill author not specified")
+
+    return ValidationResult(passed=len(errors) == 0, errors=errors, warnings=warnings)
 
 
 def load_plugin_manifest(plugin_dir: Path) -> PluginManifest | None:
@@ -94,6 +164,15 @@ def validate_component_paths(plugin_dir: Path, manifest: PluginManifest) -> Vali
             errors.append(f"Declared skill path does not exist: {skill}")
         elif not (skill_path / "SKILL.md").exists():
             warnings.append(f"Skill directory missing SKILL.md: {skill}")
+        else:
+            # Parse and validate SKILL.md frontmatter
+            skill_manifest = parse_skill_markdown(skill_path)
+            if skill_manifest is None:
+                warnings.append(f"Failed to parse SKILL.md frontmatter: {skill}")
+            else:
+                skill_result = validate_skill_frontmatter(skill_manifest)
+                errors.extend(skill_result.errors)
+                warnings.extend(skill_result.warnings)
 
     # Check agents
     for agent in manifest.agents:
