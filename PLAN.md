@@ -4,7 +4,7 @@ Each round completes one feature or repair. Future items are planned, not implem
 
 ## Current round
 
-plugin-validator
+diff-quality-analyzer
 
 ## Roadmap
 
@@ -25,7 +25,7 @@ Tests: `backend/tests/test_health.py`, `backend/tests/test_auth.py`, `backend/te
 
 ### plugin-validator — Cursor plugin manifest and component validator
 
-Status: in_progress
+Status: done
 
 Acceptance:
 - Validates plugin.json against schema
@@ -33,6 +33,10 @@ Acceptance:
 - Verifies agents/, skills/, hooks/, mcp.json paths exist
 - Validates mcp.json placeholders against variables
 - Detects unlisted plugin directories
+
+Implementation: `backend/app/services/plugin_validator.py`
+
+Tests: `backend/tests/test_plugin_validator.py`
 
 ### diff-quality-analyzer — Diff rendering quality analyzer (issue #472)
 

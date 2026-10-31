@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "current_feature": "plugin-validator",
+  "current_feature": "diff-quality-analyzer",
   "features": [
     {
       "id": "core-skeleton",
@@ -48,7 +48,7 @@
     {
       "id": "plugin-validator",
       "title": "Cursor plugin manifest and component validator",
-      "status": "in_progress",
+      "status": "done",
       "acceptance": [
         "Validates plugin.json against schema",
         "Checks SKILL.md frontmatter parsing",
@@ -56,8 +56,12 @@
         "Validates mcp.json placeholders against variables",
         "Detects unlisted plugin directories"
       ],
-      "implementation": [],
-      "tests": []
+      "implementation": [
+        "backend/app/services/plugin_validator.py"
+      ],
+      "tests": [
+        "backend/tests/test_plugin_validator.py"
+      ]
     },
     {
       "id": "diff-quality-analyzer",
