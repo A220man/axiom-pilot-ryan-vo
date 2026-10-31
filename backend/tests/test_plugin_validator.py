@@ -16,6 +16,7 @@ from app.services.plugin_validator import (
     parse_skill_markdown,
     validate_component_paths,
     validate_mcp_placeholders,
+    validate_manifest_schema,
     validate_plugin_directory,
     validate_skill_frontmatter,
 )
