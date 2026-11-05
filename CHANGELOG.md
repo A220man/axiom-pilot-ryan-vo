@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
 ## 1.3.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
@@ -46,7 +50,7 @@ Partial code published for continued development. Known issues: STATUS.md.
 - .gitignore excludes .venv, node_modules, dist, databases, secrets
 
 ## Roadmap (planned, not implemented)
-- Plugin Manifest Validator: schema validation, SKILL.md frontmatter, path existence, MCP placeholders
-- Diff Quality Analyzer (issue #472): import filtering detection, whitespace collapse detection
+- Plugin Manifest Validator: schema validation, SKILL.md frontmatter, path existence, MCP placeholders ✓ (1.3.0)
+- Diff Quality Analyzer (issue #472): import filtering detection, whitespace collapse detection ✓ (1.3.0)
 - OAuth Scope Auditor (issue #385): declared vs required scope checking
 - Symlink Detector (issue #35): ~/.cursor/plugins/local symlink scanning

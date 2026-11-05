@@ -40,13 +40,17 @@ Tests: `backend/tests/test_plugin_validator.py`
 
 ### diff-quality-analyzer — Diff rendering quality analyzer (issue #472)
 
-Status: planned
+Status: done
 
 Acceptance:
 - Parses raw diff and computes line numbers from hunk headers
 - Detects import lines filtered before numbering
 - Detects whitespace-only collapsing hiding meaningful changes
 - Reports issues with line references
+
+Implementation: `backend/app/services/diff_quality_analyzer.py`
+
+Tests: `backend/tests/test_diff_quality_analyzer.py`
 
 ### symlink-detector — Local plugin symlink detection (issue #35)
 

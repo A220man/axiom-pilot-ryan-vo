@@ -66,15 +66,19 @@
     {
       "id": "diff-quality-analyzer",
       "title": "Diff rendering quality analyzer (issue #472)",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Parses raw diff and computes line numbers from hunk headers",
         "Detects import lines filtered before numbering",
         "Detects whitespace-only collapsing hiding meaningful changes",
         "Reports issues with line references"
       ],
-      "implementation": [],
-      "tests": []
+      "implementation": [
+        "backend/app/services/diff_quality_analyzer.py"
+      ],
+      "tests": [
+        "backend/tests/test_diff_quality_analyzer.py"
+      ]
     },
     {
       "id": "symlink-detector",
