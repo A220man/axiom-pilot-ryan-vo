@@ -191,3 +191,56 @@ class TestDiffAnalysisResult:
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
+
+
+class TestDiffQualityAPI:
+    """Tests for diff quality analyzer API endpoints."""
+
+    def test_health_endpoint(self) -> None:
+        """Test health check endpoint."""
+        from fastapi.testclient import TestClient
+        from app.main import app
+
+        client = TestClient(app)
+        resp = client.get("/diff-quality/health")
+        assert resp.status_code == 200
+        assert resp.json() == {"status": "ok", "service": "diff-quality-analyzer"}
+
+    def test_analyze_endpoint(self) -> None:
+        """Test analyze diff endpoint."""
+        from fastapi.testclient import TestClient
+        from app.main import app
+
+        client = TestClient(app)
+        diff_text = """--- a/file.py
++++ b/file.py
+@@ -1,3 +1,4 @@
+ def hello():
++    import os
+     print("hello")
+     return 42
+"""
+        resp = client.post("/diff-quality/analyze", json={"diff_text": diff_text})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "issues" in data
+        assert "stats" in data
+        assert "has_errors" in data
+        assert "has_warnings" in data
+        assert len(data["issues"]) >= 1
+        # Check import filtering issue
+        import_issues = [i for i in data["issues"] if i["category"] == "import-filtering"]
+        assert len(import_issues) >= 1
+        assert import_issues[0]["line_number"] == 2
+
+    def test_analyze_endpoint_invalid_diff(self) -> None:
+        """Test analyze endpoint with invalid diff (returns empty result)."""
+        from fastapi.testclient import TestClient
+        from app.main import app
+
+        client = TestClient(app)
+        resp = client.post("/diff-quality/analyze", json={"diff_text": "not a valid diff"})
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["issues"] == []
+        assert data["stats"]["files_changed"] == 0

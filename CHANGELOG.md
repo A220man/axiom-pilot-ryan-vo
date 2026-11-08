@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
 ## 1.4.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
@@ -54,3 +58,7 @@ Partial code published for continued development. Known issues: STATUS.md.
 - Diff Quality Analyzer (issue #472): import filtering detection, whitespace collapse detection ✓ (1.3.0)
 - OAuth Scope Auditor (issue #385): declared vs required scope checking
 - Symlink Detector (issue #35): ~/.cursor/plugins/local symlink scanning
+### Added (checkpoint)
+- Diff Quality Analyzer API endpoints (`/diff-quality/health`, `/diff-quality/analyze`)
+- Frontend API client types for diff quality analysis (DiffIssue, DiffStats)
+- API tests for diff quality analyzer endpoints (3 new tests)

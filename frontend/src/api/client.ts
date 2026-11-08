@@ -70,12 +70,43 @@ export const api = {
     csrf: () => request<{ csrf_token: string }>('/auth/csrf', { method: 'POST' }),
   },
 
+  // Diff Quality Analyzer
+  diffQuality: {
+    health: () => request<{ status: string; service: string }>('/diff-quality/health'),
+    analyze: (diffText: string) =>
+      request<{
+        issues: DiffIssue[];
+        stats: DiffStats;
+        has_errors: boolean;
+        has_warnings: boolean;
+      }>('/diff-quality/analyze', { method: 'POST', body: JSON.stringify({ diff_text: diffText }) }),
+  },
+
   // Generic helpers
   get: <T>(path: string, params?: RequestOptions['params']) => request<T>(path, { method: 'GET', params }),
   post: <T>(path: string, body: unknown) => request<T>(path, { method: 'POST', body: JSON.stringify(body) }),
   put: <T>(path: string, body: unknown) => request<T>(path, { method: 'PUT', body: JSON.stringify(body) }),
   delete: <T>(path: string) => request<T>(path, { method: 'DELETE' }),
 };
+
+// Diff Quality types
+export interface DiffIssue {
+  file_path: string;
+  line_number: number | null;
+  severity: string;
+  category: string;
+  message: string;
+  context: string | null;
+}
+
+export interface DiffStats {
+  files_changed: number;
+  total_additions: number;
+  total_deletions: number;
+  total_hunks: number;
+  issues_by_severity: Record<string, number>;
+  issues_by_category: Record<string, number>;
+}
 
 // Types
 export interface User {
