@@ -74,10 +74,12 @@
         "Reports issues with line references"
       ],
       "implementation": [
-        "backend/app/services/diff_quality_analyzer.py"
+        "backend/app/services/diff_quality_analyzer.py",
+        "backend/app/api/routes/diff_quality.py"
       ],
       "tests": [
-        "backend/tests/test_diff_quality_analyzer.py"
+        "backend/tests/test_diff_quality_analyzer.py",
+        "frontend/src/api/client.ts"
       ]
     },
     {

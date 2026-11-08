@@ -48,9 +48,9 @@ Acceptance:
 - Detects whitespace-only collapsing hiding meaningful changes
 - Reports issues with line references
 
-Implementation: `backend/app/services/diff_quality_analyzer.py`
+Implementation: `backend/app/services/diff_quality_analyzer.py`, `backend/app/api/routes/diff_quality.py`
 
-Tests: `backend/tests/test_diff_quality_analyzer.py`
+Tests: `backend/tests/test_diff_quality_analyzer.py`, `frontend/src/api/client.ts`
 
 ### symlink-detector — Local plugin symlink detection (issue #35)
 
