@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0 — work-in-progress checkpoint
+
+Partial code published for continued development. Known issues: STATUS.md.
+
 ## 1.5.0 — work-in-progress checkpoint
 
 Partial code published for continued development. Known issues: STATUS.md.
@@ -58,7 +62,14 @@ Partial code published for continued development. Known issues: STATUS.md.
 - Diff Quality Analyzer (issue #472): import filtering detection, whitespace collapse detection ✓ (1.3.0)
 - OAuth Scope Auditor (issue #385): declared vs required scope checking
 - Symlink Detector (issue #35): ~/.cursor/plugins/local symlink scanning
+- LLM Explanations: opt-in LLM explanations for validation findings
 ### Added (checkpoint)
 - Diff Quality Analyzer API endpoints (`/diff-quality/health`, `/diff-quality/analyze`)
 - Frontend API client types for diff quality analysis (DiffIssue, DiffStats)
 - API tests for diff quality analyzer endpoints (3 new tests)
+### Added (checkpoint)
+- Symlink Detector service for scanning ~/.cursor/plugins/local
+- Symlink Detector API endpoints (`/symlinks/health`, `/symlinks/scan`)
+- Frontend API client types for symlink detection (SymlinkIssue)
+- Dashboard UI integration for symlink scanning with results display
+- Comprehensive test suite for symlink detector (13 tests)

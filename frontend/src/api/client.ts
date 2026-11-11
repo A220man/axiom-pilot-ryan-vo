@@ -82,6 +82,22 @@ export const api = {
       }>('/diff-quality/analyze', { method: 'POST', body: JSON.stringify({ diff_text: diffText }) }),
   },
 
+  // Symlink Detector
+  symlinks: {
+    health: () => request<{ status: string; service: string }>('/symlinks/health'),
+    scan: (pluginsPath?: string) =>
+      request<{
+        scanned_path: string;
+        total_plugins: number;
+        symlinked_plugins: string[];
+        broken_symlinks: string[];
+        issues: SymlinkIssue[];
+        has_issues: boolean;
+        has_symlinks: boolean;
+        has_broken: boolean;
+      }>('/symlinks/scan', { method: 'POST', body: JSON.stringify({ plugins_path: pluginsPath }) }),
+  },
+
   // Generic helpers
   get: <T>(path: string, params?: RequestOptions['params']) => request<T>(path, { method: 'GET', params }),
   post: <T>(path: string, body: unknown) => request<T>(path, { method: 'POST', body: JSON.stringify(body) }),
@@ -106,6 +122,16 @@ export interface DiffStats {
   total_hunks: number;
   issues_by_severity: Record<string, number>;
   issues_by_category: Record<string, number>;
+}
+
+// Symlink Detector types
+export interface SymlinkIssue {
+  plugin_name: string;
+  plugin_path: string;
+  issue_type: string;
+  message: string;
+  target_path: string | null;
+  suggestion: string | null;
 }
 
 // Types
