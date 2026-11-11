@@ -85,14 +85,21 @@
     {
       "id": "symlink-detector",
       "title": "Local plugin symlink detection (issue #35)",
-      "status": "planned",
+      "status": "done",
       "acceptance": [
         "Scans ~/.cursor/plugins/local for symlinks",
         "Reports symlinked plugins that won't load",
         "Suggests copy-based workflow"
       ],
-      "implementation": [],
-      "tests": []
+      "implementation": [
+        "backend/app/services/symlink_detector.py",
+        "backend/app/api/routes/symlink_detector.py",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/api/client.ts"
+      ],
+      "tests": [
+        "backend/tests/test_symlink_detector.py"
+      ]
     },
     {
       "id": "oauth-scope-auditor",

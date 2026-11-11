@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.core.config import get_settings
 from app.core.database import close_db, init_db
-from app.api.routes import health, auth, diff_quality
+from app.api.routes import health, auth, diff_quality, symlink_detector
 
 settings = get_settings()
 
@@ -44,6 +44,7 @@ def create_app() -> FastAPI:
     # Routers
     app.include_router(health.router)
     app.include_router(diff_quality.router)
+    app.include_router(symlink_detector.router)
 
     # Static files for frontend build (production)
     # app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="static")

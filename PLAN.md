@@ -54,12 +54,16 @@ Tests: `backend/tests/test_diff_quality_analyzer.py`, `frontend/src/api/client.t
 
 ### symlink-detector — Local plugin symlink detection (issue #35)
 
-Status: planned
+Status: done
 
 Acceptance:
 - Scans ~/.cursor/plugins/local for symlinks
 - Reports symlinked plugins that won't load
 - Suggests copy-based workflow
+
+Implementation: `backend/app/services/symlink_detector.py`, `backend/app/api/routes/symlink_detector.py`, `frontend/src/pages/DashboardPage.tsx`, `frontend/src/api/client.ts`
+
+Tests: `backend/tests/test_symlink_detector.py`
 
 ### oauth-scope-auditor — OAuth scope auditor for connectors (issue #385)
 
