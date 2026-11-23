@@ -1,6 +1,6 @@
 [project]
 name = "axiom-pilot-ryan-vo"
-version = "1.7.0"
+version = "1.8.0"
 description = "AI/ML developer tool for Cursor plugin quality analysis"
 readme = "README.md"
 license = {text = "MIT"}
