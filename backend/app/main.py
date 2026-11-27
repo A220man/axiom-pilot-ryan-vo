@@ -46,6 +46,7 @@ def create_app() -> FastAPI:
     app.include_router(diff_quality.router)
     app.include_router(symlink_detector.router)
     app.include_router(oauth_scope.router)
+    app.include_router(auth.router)
 
     # Static files for frontend build (production)
     # app.mount("/", StaticFiles(directory="frontend/dist", html=True), name="static")
